@@ -1,2 +1,2 @@
 # BJ_Game
-My first ever local BlackJack game
+My first ever local BlackJack game.

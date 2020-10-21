@@ -1,0 +1,10 @@
+C:\Users\a.capeyron\Documents\GitHub\BJ_Game\BJ_Game\BJ_Game\bin\Debug\BJ_Game.exe
+C:\Users\a.capeyron\Documents\GitHub\BJ_Game\BJ_Game\BJ_Game\bin\Debug\BJ_Game.pdb
+C:\Users\a.capeyron\Documents\GitHub\BJ_Game\BJ_Game\BJ_Game\obj\Debug\BJ_Game.csprojAssemblyReference.cache
+C:\Users\a.capeyron\Documents\GitHub\BJ_Game\BJ_Game\BJ_Game\obj\Debug\BJ_Game.Form1.resources
+C:\Users\a.capeyron\Documents\GitHub\BJ_Game\BJ_Game\BJ_Game\obj\Debug\BJ_Game.Properties.Resources.resources
+C:\Users\a.capeyron\Documents\GitHub\BJ_Game\BJ_Game\BJ_Game\obj\Debug\BJ_Game.csproj.GenerateResource.cache
+C:\Users\a.capeyron\Documents\GitHub\BJ_Game\BJ_Game\BJ_Game\obj\Debug\BJ_Game.csproj.CoreCompileInputs.cache
+C:\Users\a.capeyron\Documents\GitHub\BJ_Game\BJ_Game\BJ_Game\obj\Debug\BJ_Game.exe
+C:\Users\a.capeyron\Documents\GitHub\BJ_Game\BJ_Game\BJ_Game\obj\Debug\BJ_Game.pdb
+C:\Users\a.capeyron\Documents\GitHub\BJ_Game\BJ_Game\BJ_Game\obj\Debug\BJ_Game.StartScreen.resources
