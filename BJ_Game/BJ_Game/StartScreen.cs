@@ -11,7 +11,6 @@ namespace BJ_Game
 {
     public partial class StartScreen : Form
     {
-        DataImport dataImport;
         public StartScreen()
         {
             InitializeComponent();
@@ -19,9 +18,13 @@ namespace BJ_Game
 
         private void StartScreen_Load(object sender, EventArgs e)
         {
-            dataImport = new DataImport();
+            DataImport dataImport = new DataImport();
             dataImport.ImportDataCSV();
-            textBox1.Text = dataImport.Rules;
+            foreach (string line in dataImport.Rules) {
+                // Add a text box for each line read in the .txt file
+                label1.Text += line + Environment.NewLine;
+            }
+            
         }
     }
 }

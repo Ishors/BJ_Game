@@ -14,8 +14,6 @@ namespace BJ_Game
         public Form1()
         {
             InitializeComponent();
-            StartScreen ecranAccueil = new StartScreen();
-            ecranAccueil.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)

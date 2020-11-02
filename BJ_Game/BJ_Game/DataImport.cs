@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Windows.Forms;
 
 namespace BJ_Game
 {
@@ -10,13 +11,13 @@ namespace BJ_Game
     {
         private StreamReader reader;
         private string filepathFull; //chemin d'accès au fichier
-        private string rules;
+        private List<string> rules;
         public DataImport()
         {
-
+            rules = new List<string>();
         }
 
-        public string Rules { get => rules; set => rules = value; }
+        public List<string> Rules { get => rules; set => rules = value; }
 
         public void ImportDataCSV()
         {
@@ -30,7 +31,8 @@ namespace BJ_Game
                 while ((line = reader.ReadLine()) != null)
                 {
                     // Write every line in a single string
-                    this.rules += line;
+                    
+                    rules.Add(line +"\n");
                 }
             }
         }
