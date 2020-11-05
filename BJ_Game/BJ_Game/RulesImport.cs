@@ -7,22 +7,23 @@ using System.Windows.Forms;
 
 namespace BJ_Game
 {
-    class DataImport
+    class RulesImport
     {
         private StreamReader reader;
-        private string filepathFull; //chemin d'accès au fichier
         private List<string> rules;
-        public DataImport()
+
+        public RulesImport()
         {
             rules = new List<string>();
         }
 
         public List<string> Rules { get => rules; set => rules = value; }
 
-        public void ImportDataCSV()
+        public void importDataCSV()
         {
-            this.filepathFull = Path.GetFullPath("rules.txt");
-            using (reader = new StreamReader(filepathFull))
+            string filepathRules;
+            filepathRules = Path.GetFullPath("rules.txt");
+            using (reader = new StreamReader(filepathRules))
             {
                 /// Local variable used to stock every readed line
                 string line;

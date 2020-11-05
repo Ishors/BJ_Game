@@ -18,9 +18,9 @@ namespace BJ_Game
 
         private void StartScreen_Load(object sender, EventArgs e)
         {
-            DataImport dataImport = new DataImport();
-            dataImport.ImportDataCSV();
-            foreach (string line in dataImport.Rules) {
+            RulesImport rulesImport = new RulesImport();
+            rulesImport.importDataCSV();
+            foreach (string line in rulesImport.Rules) {
                 // Add a text box for each line read in the .txt file
                 label1.Text += line + Environment.NewLine;
             }
@@ -29,6 +29,7 @@ namespace BJ_Game
 
         private void button_playBJ_Click(object sender, EventArgs e)
         {
+
             this.Close();
         }
     }

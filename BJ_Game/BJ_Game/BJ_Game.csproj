@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataImport.cs" />
+    <Compile Include="CardsImport.cs" />
+    <Compile Include="DataExport.cs" />
+    <Compile Include="RulesImport.cs" />
     <Compile Include="Dealer.cs" />
     <Compile Include="ShuffleRandomizer.cs" />
     <Compile Include="StartScreen.cs">

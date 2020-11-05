@@ -7,36 +7,35 @@ namespace BJ_Game
 {
     class ShuffleRandomizer
     {
-        private string[] Deck;
+        private string[] deck;
         private int cardsLeft;
 
         public ShuffleRandomizer()
-        {
-            // Exception a gérer plus tard si deckType != 32 ou 52 (quoique si on donne seulement 32 et 52 comme choix (boutons) c'est ok)
-
-           /*this.Deck = new string[13, 4] { { "two", "two", "two", "two" }, { "three", "three", "three", "three" },
-                { "four", "four", "four", "four"}, { "five", "five", "five", "five"}, { "six", "six", "six", "six" },
-                { "seven", "seven", "seven", "seven" }, { "eight", "eight", "eight", "eight" },{ "nine", "nine", "nine", "nine" },
-                { "ten", "ten", "ten", "ten" }, { "jack", "jack", "jack", "jack" }, { "queen", "queen", "queen", "queen" },
-                { "king", "king", "king", "king" }, { "ace", "ace", "ace", "ace" } };*/
-           this.Deck = new string [52] { "two", "two", "two", "two", "three", "three", "three", "three",
-                 "four", "four", "four", "four",  "five", "five", "five", "five",  "six", "six", "six", "six" ,
-                 "seven", "seven", "seven", "seven" ,  "eight", "eight", "eight", "eight" , "nine", "nine", "nine", "nine" ,
-                 "ten", "ten", "ten", "ten" ,  "jack", "jack", "jack", "jack" ,  "queen", "queen", "queen", "queen" ,
-                 "king", "king", "king", "king" ,  "ace", "ace", "ace", "ace" };
+        {  
+           this.deck = new string [52] 
+           { "two_hearts", "two_spades", "two_diamonds", "two_clubs", "three_hearts", "three_spades", "three_diamonds", "three_clubs",
+             "four_hearts", "four_spades", "four_diamonds", "four_clubs",  "five_hearts", "five_spades", "five_diamonds", "five_clubs",
+             "six_hearts", "six_spades", "six_diamonds", "six_clubs" ,"seven_hearts", "seven_spades", "seven_diamonds", "seven_clubs" ,
+             "eight_hearts", "eight_spades", "eight_diamonds", "eight_clubs" , "nine_hearts", "nine_spades", "nine_diamonds", "nine_clubs" ,
+             "ten_hearts", "ten_spades", "ten_diamonds", "ten_clubs" ,  "jack_hearts", "jack_spades", "jack_diamonds", "jack_clubs" , 
+             "queen_hearts", "queen_spades", "queen_diamonds", "queen_clubs" ,"king_hearts", "king_spades", "king_diamonds", "king_clubs" ,
+             "ace_hearts", "ace_spades", "ace_diamonds", "ace_clubs" };
             this.cardsLeft = 52;
         }
+
+        public string[] Deck { get => deck; set => deck = value; }
+        public int CardsLeft { get => cardsLeft; set => cardsLeft = value; }
+
         public string distribute()
         {
             while (cardsLeft !=0)
             {
-                Random random = new Random(52);
-                // Attention
-                int randInt = Int32.Parse(random.ToString());
-                if (Deck[randInt].Equals("") == false)
+                Random random = new Random();
+                int randInt = random.Next(52);
+                if (this.deck[randInt].Equals("") == false)
                 {
-                    string nextCard = this.Deck[randInt];
-                    Deck[randInt] = "";
+                    string nextCard = this.deck[randInt];
+                    this.deck[randInt] = "";
                     cardsLeft -= 1;
                     return nextCard;
                 }

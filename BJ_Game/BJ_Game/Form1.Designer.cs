@@ -28,67 +28,111 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label_player = new System.Windows.Forms.Label();
-            this.label_dealer = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel_player = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel_dealer = new System.Windows.Forms.FlowLayoutPanel();
+            this.button_hit = new System.Windows.Forms.Button();
+            this.button_stand = new System.Windows.Forms.Button();
+            this.button_go = new System.Windows.Forms.Button();
+            this.groupBox_bank = new System.Windows.Forms.GroupBox();
+            this.pictureBox1_player = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel_player.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1_player)).BeginInit();
             this.SuspendLayout();
             // 
-            // label_player
+            // flowLayoutPanel_player
             // 
-            this.label_player.AutoSize = true;
-            this.label_player.Location = new System.Drawing.Point(373, 407);
-            this.label_player.Name = "label_player";
-            this.label_player.Size = new System.Drawing.Size(48, 17);
-            this.label_player.TabIndex = 0;
-            this.label_player.Text = "Player";
+            this.flowLayoutPanel_player.Controls.Add(this.pictureBox1_player);
+            this.flowLayoutPanel_player.Location = new System.Drawing.Point(234, 204);
+            this.flowLayoutPanel_player.Name = "flowLayoutPanel_player";
+            this.flowLayoutPanel_player.Size = new System.Drawing.Size(343, 200);
+            this.flowLayoutPanel_player.TabIndex = 2;
             // 
-            // label_dealer
+            // flowLayoutPanel_dealer
             // 
-            this.label_dealer.AutoSize = true;
-            this.label_dealer.Location = new System.Drawing.Point(373, 32);
-            this.label_dealer.Name = "label_dealer";
-            this.label_dealer.Size = new System.Drawing.Size(50, 17);
-            this.label_dealer.TabIndex = 1;
-            this.label_dealer.Text = "Dealer";
+            this.flowLayoutPanel_dealer.Location = new System.Drawing.Point(234, 52);
+            this.flowLayoutPanel_dealer.Name = "flowLayoutPanel_dealer";
+            this.flowLayoutPanel_dealer.Size = new System.Drawing.Size(343, 146);
+            this.flowLayoutPanel_dealer.TabIndex = 3;
             // 
-            // flowLayoutPanel1
+            // button_hit
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(252, 246);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(290, 158);
-            this.flowLayoutPanel1.TabIndex = 2;
+            this.button_hit.Enabled = false;
+            this.button_hit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.button_hit.Location = new System.Drawing.Point(623, 220);
+            this.button_hit.Name = "button_hit";
+            this.button_hit.Size = new System.Drawing.Size(120, 78);
+            this.button_hit.TabIndex = 4;
+            this.button_hit.Text = "Hit";
+            this.button_hit.UseVisualStyleBackColor = true;
+            this.button_hit.Visible = false;
             // 
-            // flowLayoutPanel2
+            // button_stand
             // 
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(252, 52);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(290, 146);
-            this.flowLayoutPanel2.TabIndex = 3;
+            this.button_stand.Enabled = false;
+            this.button_stand.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.button_stand.Location = new System.Drawing.Point(623, 326);
+            this.button_stand.Name = "button_stand";
+            this.button_stand.Size = new System.Drawing.Size(120, 78);
+            this.button_stand.TabIndex = 5;
+            this.button_stand.Text = "Stand";
+            this.button_stand.UseVisualStyleBackColor = true;
+            this.button_stand.Visible = false;
+            // 
+            // button_go
+            // 
+            this.button_go.Location = new System.Drawing.Point(279, 410);
+            this.button_go.Name = "button_go";
+            this.button_go.Size = new System.Drawing.Size(241, 28);
+            this.button_go.TabIndex = 6;
+            this.button_go.Text = "Let\'s go !";
+            this.button_go.UseVisualStyleBackColor = true;
+            this.button_go.Click += new System.EventHandler(this.button_go_Click);
+            // 
+            // groupBox_bank
+            // 
+            this.groupBox_bank.Location = new System.Drawing.Point(12, 246);
+            this.groupBox_bank.Name = "groupBox_bank";
+            this.groupBox_bank.Size = new System.Drawing.Size(216, 158);
+            this.groupBox_bank.TabIndex = 8;
+            this.groupBox_bank.TabStop = false;
+            this.groupBox_bank.Text = "Banque";
+            // 
+            // pictureBox1_player
+            // 
+            this.pictureBox1_player.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1_player.Name = "pictureBox1_player";
+            this.pictureBox1_player.Size = new System.Drawing.Size(143, 197);
+            this.pictureBox1_player.TabIndex = 0;
+            this.pictureBox1_player.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.flowLayoutPanel2);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.label_dealer);
-            this.Controls.Add(this.label_player);
+            this.Controls.Add(this.groupBox_bank);
+            this.Controls.Add(this.button_go);
+            this.Controls.Add(this.button_stand);
+            this.Controls.Add(this.button_hit);
+            this.Controls.Add(this.flowLayoutPanel_dealer);
+            this.Controls.Add(this.flowLayoutPanel_player);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Best BlackJack Game Ever";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.flowLayoutPanel_player.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1_player)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label_player;
-        private System.Windows.Forms.Label label_dealer;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_player;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_dealer;
+        private System.Windows.Forms.Button button_hit;
+        private System.Windows.Forms.Button button_stand;
+        private System.Windows.Forms.Button button_go;
+        private System.Windows.Forms.GroupBox groupBox_bank;
+        private System.Windows.Forms.PictureBox pictureBox1_player;
     }
 }
 
