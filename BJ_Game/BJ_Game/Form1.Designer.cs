@@ -37,7 +37,7 @@
             // label_player
             // 
             this.label_player.AutoSize = true;
-            this.label_player.Location = new System.Drawing.Point(347, 407);
+            this.label_player.Location = new System.Drawing.Point(373, 407);
             this.label_player.Name = "label_player";
             this.label_player.Size = new System.Drawing.Size(48, 17);
             this.label_player.TabIndex = 0;
@@ -46,7 +46,7 @@
             // label_dealer
             // 
             this.label_dealer.AutoSize = true;
-            this.label_dealer.Location = new System.Drawing.Point(335, 32);
+            this.label_dealer.Location = new System.Drawing.Point(373, 32);
             this.label_dealer.Name = "label_dealer";
             this.label_dealer.Size = new System.Drawing.Size(50, 17);
             this.label_dealer.TabIndex = 1;
@@ -54,16 +54,16 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(192, 304);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(252, 246);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(370, 100);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(290, 158);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(189, 58);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(252, 52);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(370, 100);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(290, 146);
             this.flowLayoutPanel2.TabIndex = 3;
             // 
             // Form1
