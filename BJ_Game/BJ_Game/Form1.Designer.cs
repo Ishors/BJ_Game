@@ -34,31 +34,27 @@
             this.button_stand = new System.Windows.Forms.Button();
             this.button_go = new System.Windows.Forms.Button();
             this.groupBox_bank = new System.Windows.Forms.GroupBox();
-            this.pictureBox1_player = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanel_player.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1_player)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel_player
             // 
-            this.flowLayoutPanel_player.Controls.Add(this.pictureBox1_player);
-            this.flowLayoutPanel_player.Location = new System.Drawing.Point(234, 204);
+            this.flowLayoutPanel_player.Location = new System.Drawing.Point(240, 235);
             this.flowLayoutPanel_player.Name = "flowLayoutPanel_player";
-            this.flowLayoutPanel_player.Size = new System.Drawing.Size(343, 200);
+            this.flowLayoutPanel_player.Size = new System.Drawing.Size(354, 239);
             this.flowLayoutPanel_player.TabIndex = 2;
             // 
             // flowLayoutPanel_dealer
             // 
-            this.flowLayoutPanel_dealer.Location = new System.Drawing.Point(234, 52);
+            this.flowLayoutPanel_dealer.Location = new System.Drawing.Point(237, 12);
             this.flowLayoutPanel_dealer.Name = "flowLayoutPanel_dealer";
-            this.flowLayoutPanel_dealer.Size = new System.Drawing.Size(343, 146);
+            this.flowLayoutPanel_dealer.Size = new System.Drawing.Size(357, 217);
             this.flowLayoutPanel_dealer.TabIndex = 3;
             // 
             // button_hit
             // 
             this.button_hit.Enabled = false;
             this.button_hit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.button_hit.Location = new System.Drawing.Point(623, 220);
+            this.button_hit.Location = new System.Drawing.Point(661, 235);
             this.button_hit.Name = "button_hit";
             this.button_hit.Size = new System.Drawing.Size(120, 78);
             this.button_hit.TabIndex = 4;
@@ -70,7 +66,7 @@
             // 
             this.button_stand.Enabled = false;
             this.button_stand.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.button_stand.Location = new System.Drawing.Point(623, 326);
+            this.button_stand.Location = new System.Drawing.Point(661, 336);
             this.button_stand.Name = "button_stand";
             this.button_stand.Size = new System.Drawing.Size(120, 78);
             this.button_stand.TabIndex = 5;
@@ -80,7 +76,7 @@
             // 
             // button_go
             // 
-            this.button_go.Location = new System.Drawing.Point(279, 410);
+            this.button_go.Location = new System.Drawing.Point(286, 480);
             this.button_go.Name = "button_go";
             this.button_go.Size = new System.Drawing.Size(241, 28);
             this.button_go.TabIndex = 6;
@@ -97,19 +93,11 @@
             this.groupBox_bank.TabStop = false;
             this.groupBox_bank.Text = "Banque";
             // 
-            // pictureBox1_player
-            // 
-            this.pictureBox1_player.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1_player.Name = "pictureBox1_player";
-            this.pictureBox1_player.Size = new System.Drawing.Size(143, 197);
-            this.pictureBox1_player.TabIndex = 0;
-            this.pictureBox1_player.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(862, 542);
             this.Controls.Add(this.groupBox_bank);
             this.Controls.Add(this.button_go);
             this.Controls.Add(this.button_stand);
@@ -119,8 +107,6 @@
             this.Name = "Form1";
             this.Text = "Best BlackJack Game Ever";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.flowLayoutPanel_player.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1_player)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -132,7 +118,6 @@
         private System.Windows.Forms.Button button_stand;
         private System.Windows.Forms.Button button_go;
         private System.Windows.Forms.GroupBox groupBox_bank;
-        private System.Windows.Forms.PictureBox pictureBox1_player;
     }
 }
 

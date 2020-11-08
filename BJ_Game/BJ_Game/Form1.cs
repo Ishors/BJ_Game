@@ -15,15 +15,20 @@ namespace BJ_Game
         private ShuffleRandomizer sr;
         private string turn;
         StartScreen startScreen;
-        CardsImport cardsImport;
-
+        CardsImport ci;
+        Dictionary<string, Image> playerCards;
+        Dictionary<string, Image> dealerCards;
+        List<PictureBox> displayList;
+        Image backOfCard;
         public Form1()
         {
             InitializeComponent();
             startScreen = new StartScreen();
             sr = new ShuffleRandomizer();
-            cardsImport = new CardsImport();
-            cardsImport.importCards();
+            ci = new CardsImport();
+            ci.importCards();
+            backOfCard = Image.FromFile(ci.FilepathCards + "/cardBack.jpg");
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -41,11 +46,35 @@ namespace BJ_Game
             button_hit.Visible = true;
             button_stand.Enabled = true;
             button_stand.Visible = true;
-            for (int i=0; i < 52; i++)
+            playerCards = new Dictionary<string, Image>();
+            dealerCards = new Dictionary<string, Image>();
+            displayList = new List<PictureBox>();
+            for (int j = 0; j < 4; j++)
             {
-                if (cardsImport.CardsName[i] == sr.distribute())
+                string nextCard = sr.distribute();
+                for (int i = 0; i < 52; i++)
                 {
-                    pictureBox1_player.Image = cardsImport.Cards[i];
+                    if (ci.CardsName[i] == nextCard && (j == 0 || j==1))
+                    {
+                        playerCards.Add(ci.CardsName[i], ci.CardsImage[i]);
+                        displayList.Add(new PictureBox());
+                        displayList.Last().Image = ci.CardsImage[i];
+                        flowLayoutPanel_player.Controls.Add(displayList.Last());
+                    }
+                    else if(ci.CardsName[i] == nextCard && (j == 2))
+                    {
+                        dealerCards.Add(ci.CardsName[i], ci.CardsImage[i]);
+                        displayList.Add(new PictureBox());
+                        displayList.Last().Image = ci.CardsImage[i];
+                        flowLayoutPanel_dealer.Controls.Add(displayList.Last());
+                    }
+                    else if (ci.CardsName[i] == nextCard && (j == 3))
+                    {
+                        dealerCards.Add(ci.CardsName[i], ci.CardsImage[i]);
+                        displayList.Add(new PictureBox());
+                        displayList.Last().Image = backOfCard;
+                        flowLayoutPanel_dealer.Controls.Add(displayList.Last());
+                    }
                 }
             }
             
