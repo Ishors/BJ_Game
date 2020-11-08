@@ -58,6 +58,8 @@ namespace BJ_Game
                     {
                         playerCards.Add(ci.CardsName[i], ci.CardsImage[i]);
                         displayList.Add(new PictureBox());
+                        displayList.Last().Width = 106;
+                        displayList.Last().Height = 154;
                         displayList.Last().Image = ci.CardsImage[i];
                         flowLayoutPanel_player.Controls.Add(displayList.Last());
                     }
@@ -66,6 +68,8 @@ namespace BJ_Game
                         dealerCards.Add(ci.CardsName[i], ci.CardsImage[i]);
                         displayList.Add(new PictureBox());
                         displayList.Last().Image = ci.CardsImage[i];
+                        displayList.Last().Width = 106;
+                        displayList.Last().Height = 154;
                         flowLayoutPanel_dealer.Controls.Add(displayList.Last());
                     }
                     else if (ci.CardsName[i] == nextCard && (j == 3))
@@ -73,6 +77,8 @@ namespace BJ_Game
                         dealerCards.Add(ci.CardsName[i], ci.CardsImage[i]);
                         displayList.Add(new PictureBox());
                         displayList.Last().Image = backOfCard;
+                        displayList.Last().Width = 106;
+                        displayList.Last().Height = 154;
                         flowLayoutPanel_dealer.Controls.Add(displayList.Last());
                     }
                 }
