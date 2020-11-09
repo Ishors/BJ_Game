@@ -34,6 +34,8 @@
             this.button_stand = new System.Windows.Forms.Button();
             this.button_go = new System.Windows.Forms.Button();
             this.groupBox_bank = new System.Windows.Forms.GroupBox();
+            this.label_cash = new System.Windows.Forms.Label();
+            this.label_bet = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // flowLayoutPanel_player
@@ -78,12 +80,13 @@
             // 
             // button_go
             // 
-            this.button_go.Location = new System.Drawing.Point(286, 480);
+            this.button_go.Location = new System.Drawing.Point(299, 497);
             this.button_go.Name = "button_go";
             this.button_go.Size = new System.Drawing.Size(241, 28);
             this.button_go.TabIndex = 6;
             this.button_go.Text = "New game";
             this.button_go.UseVisualStyleBackColor = true;
+            this.button_go.Visible = false;
             this.button_go.Click += new System.EventHandler(this.button_go_Click);
             // 
             // groupBox_bank
@@ -93,13 +96,30 @@
             this.groupBox_bank.Size = new System.Drawing.Size(216, 158);
             this.groupBox_bank.TabIndex = 8;
             this.groupBox_bank.TabStop = false;
-            this.groupBox_bank.Text = "Banque";
+            this.groupBox_bank.Text = "Bank";
+            // 
+            // label_cash
+            // 
+            this.label_cash.Location = new System.Drawing.Point(60, 407);
+            this.label_cash.Name = "label_cash";
+            this.label_cash.Size = new System.Drawing.Size(100, 23);
+            this.label_cash.TabIndex = 0;
+            // 
+            // label_bet
+            // 
+            this.label_bet.AutoSize = true;
+            this.label_bet.Location = new System.Drawing.Point(398, 477);
+            this.label_bet.Name = "label_bet";
+            this.label_bet.Size = new System.Drawing.Size(0, 17);
+            this.label_bet.TabIndex = 9;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(862, 542);
+            this.Controls.Add(this.label_bet);
+            this.Controls.Add(this.label_cash);
             this.Controls.Add(this.groupBox_bank);
             this.Controls.Add(this.button_go);
             this.Controls.Add(this.button_stand);
@@ -110,6 +130,7 @@
             this.Text = "Best BlackJack Game Ever";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -120,6 +141,8 @@
         private System.Windows.Forms.Button button_stand;
         private System.Windows.Forms.Button button_go;
         private System.Windows.Forms.GroupBox groupBox_bank;
+        private System.Windows.Forms.Label label_cash;
+        private System.Windows.Forms.Label label_bet;
     }
 }
 
