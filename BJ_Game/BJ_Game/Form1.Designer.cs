@@ -61,6 +61,7 @@
             this.button_hit.Text = "Hit";
             this.button_hit.UseVisualStyleBackColor = true;
             this.button_hit.Visible = false;
+            this.button_hit.Click += new System.EventHandler(this.button_hit_Click);
             // 
             // button_stand
             // 
@@ -73,6 +74,7 @@
             this.button_stand.Text = "Stand";
             this.button_stand.UseVisualStyleBackColor = true;
             this.button_stand.Visible = false;
+            this.button_stand.Click += new System.EventHandler(this.button_stand_Click);
             // 
             // button_go
             // 
@@ -80,7 +82,7 @@
             this.button_go.Name = "button_go";
             this.button_go.Size = new System.Drawing.Size(241, 28);
             this.button_go.TabIndex = 6;
-            this.button_go.Text = "Let\'s go !";
+            this.button_go.Text = "New game";
             this.button_go.UseVisualStyleBackColor = true;
             this.button_go.Click += new System.EventHandler(this.button_go_Click);
             // 

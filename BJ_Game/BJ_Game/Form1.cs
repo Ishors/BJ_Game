@@ -13,13 +13,15 @@ namespace BJ_Game
     public partial class Form1 : Form
     {
         private ShuffleRandomizer sr;
-        private string turn;
         StartScreen startScreen;
         CardsImport ci;
-        Dictionary<string, Image> playerCards;
-        Dictionary<string, Image> dealerCards;
-        List<PictureBox> displayList;
+        List<PictureBox> displayListDealer;
+        List<PictureBox> displayListPlayer;
         Image backOfCard;
+        Player player;
+        Dealer dealer;
+        string lastDealerCard;
+
         public Form1()
         {
             InitializeComponent();
@@ -28,7 +30,6 @@ namespace BJ_Game
             ci = new CardsImport();
             ci.importCards();
             backOfCard = Image.FromFile(ci.FilepathCards + "/cardBack.jpg");
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -40,15 +41,15 @@ namespace BJ_Game
 
         private void button_go_Click(object sender, EventArgs e)
         {
-            button_go.Enabled = false;
             button_go.Visible = false;
             button_hit.Enabled = true;
             button_hit.Visible = true;
             button_stand.Enabled = true;
             button_stand.Visible = true;
-            playerCards = new Dictionary<string, Image>();
-            dealerCards = new Dictionary<string, Image>();
-            displayList = new List<PictureBox>();
+            player = new Player();
+            dealer = new Dealer();
+            displayListPlayer = new List<PictureBox>();
+            displayListDealer = new List<PictureBox>();
             for (int j = 0; j < 4; j++)
             {
                 string nextCard = sr.distribute();
@@ -56,34 +57,143 @@ namespace BJ_Game
                 {
                     if (ci.CardsName[i] == nextCard && (j == 0 || j==1))
                     {
-                        playerCards.Add(ci.CardsName[i], ci.CardsImage[i]);
-                        displayList.Add(new PictureBox());
-                        displayList.Last().Width = 106;
-                        displayList.Last().Height = 154;
-                        displayList.Last().Image = ci.CardsImage[i];
-                        flowLayoutPanel_player.Controls.Add(displayList.Last());
+                        player.addPlayerHand(ci.CardsName[i], ci.CardsImage[i]);
+                        //MessageBox.Show(ci.CardsName[i]);
+                        //MessageBox.Show(player.PlayerHand.ToString());
+                        displayImagePlayer(ci.CardsImage[i]);
                     }
                     else if(ci.CardsName[i] == nextCard && (j == 2))
                     {
-                        dealerCards.Add(ci.CardsName[i], ci.CardsImage[i]);
-                        displayList.Add(new PictureBox());
-                        displayList.Last().Image = ci.CardsImage[i];
-                        displayList.Last().Width = 106;
-                        displayList.Last().Height = 154;
-                        flowLayoutPanel_dealer.Controls.Add(displayList.Last());
+                        dealer.addDealerHand(ci.CardsName[i], ci.CardsImage[i]);
+                        //MessageBox.Show(ci.CardsName[i]);
+                        //MessageBox.Show(dealer.DealerHand.ToString());
+                        displayImageDealer(ci.CardsImage[i]);
                     }
                     else if (ci.CardsName[i] == nextCard && (j == 3))
                     {
-                        dealerCards.Add(ci.CardsName[i], ci.CardsImage[i]);
-                        displayList.Add(new PictureBox());
-                        displayList.Last().Image = backOfCard;
-                        displayList.Last().Width = 106;
-                        displayList.Last().Height = 154;
-                        flowLayoutPanel_dealer.Controls.Add(displayList.Last());
+                        dealer.addDealerHand(ci.CardsName[i], ci.CardsImage[i]);
+                        lastDealerCard = ci.CardsName[i];
+                        //MessageBox.Show(ci.CardsName[i]);
+                        //MessageBox.Show(dealer.DealerHand.ToString());
+                        displayImageDealer(backOfCard);
                     }
                 }
             }
-            
+            if (player.PlayerHand == 21)
+            {
+                MessageBox.Show("Blackjack !!");
+                clear();
+            }
+        }
+
+        private void button_hit_Click(object sender, EventArgs e)
+        {
+            string nextCard = sr.distribute();
+            for (int i = 0; i < 52; i++)
+            {
+                if (ci.CardsName[i] == nextCard)
+                {
+                    player.addPlayerHand(ci.CardsName[i], ci.CardsImage[i]);
+                    if (player.PlayerHand > 21 && (player.PlayerCards.ContainsKey("a_hearts") ||
+                        player.PlayerCards.ContainsKey("a_diamonds") || player.PlayerCards.ContainsKey("a_spades") ||
+                        player.PlayerCards.ContainsKey("a_clubs")))
+                    {
+                        player.PlayerHand -= 10;
+                        displayImagePlayer(ci.CardsImage[i]);
+                    }
+                    else if (player.PlayerHand > 21 && !(player.PlayerCards.ContainsKey("a_hearts") ||
+                        player.PlayerCards.ContainsKey("a_diamonds") || player.PlayerCards.ContainsKey("a_spades") ||
+                        player.PlayerCards.ContainsKey("a_clubs")))
+                    {
+                        displayImagePlayer(ci.CardsImage[i]);
+                        MessageBox.Show("Bust !");
+                        clear();
+                    }
+                    else if (player.PlayerHand == 21)
+                    {
+                        displayImagePlayer(ci.CardsImage[i]);
+                        MessageBox.Show("Blackjack !!");
+                        clear();
+                    }
+                    else
+                    {
+                        displayImagePlayer(ci.CardsImage[i]);
+                    }
+                }
+            }
+        }
+
+        private void button_stand_Click(object sender, EventArgs e)
+        {
+            dealer.DealerCards.TryGetValue(lastDealerCard, out Image img);
+            displayListDealer.Last().Image = img;
+
+            while (dealer.DealerHand<=16)
+            {
+                string nextCard = sr.distribute();
+                for (int i = 0; i < 52; i++)
+                {
+                    if (ci.CardsName[i] == nextCard)
+                    {
+                        dealer.addDealerHand(ci.CardsName[i], ci.CardsImage[i]);
+                        if (dealer.DealerHand > 21)
+                        {
+                            displayImageDealer(ci.CardsImage[i]);
+                            MessageBox.Show("Win !");
+                            clear();
+                            // Pour éviter que ça ne tourne à l'infi on met u ntruc supérieur à 16
+                            // DealerHand sera de retour à 0 quand on lance une nouvelle partie de toutes façons
+                            dealer.DealerHand = 100;
+                        }
+                        else
+                        {
+                            displayImageDealer(ci.CardsImage[i]);
+                        }
+
+
+                    }
+                }
+            }
+            //Tester la win ou loose du joueur
+            if (dealer.DealerHand > player.PlayerHand)
+            {
+                MessageBox.Show("Loose");
+            }
+            else if (dealer.DealerHand == player.PlayerHand)
+            {
+                MessageBox.Show("Even");
+            }
+            else
+            {
+                MessageBox.Show("Win");
+            }
+            clear();
+        }
+
+        public void clear()
+        {
+            player.PlayerHand = 0;
+            dealer.DealerHand = 0;
+            flowLayoutPanel_player.Controls.Clear();
+            flowLayoutPanel_dealer.Controls.Clear();
+            button_go.Visible = true;
+            button_hit.Visible = false;
+            button_stand.Visible = false;
+        }
+
+        public void displayImageDealer(Image image)
+        {
+            displayListDealer.Add(new PictureBox());
+            displayListDealer.Last().Image = image;
+            displayListDealer.Last().AutoSize = true;
+            flowLayoutPanel_dealer.Controls.Add(displayListDealer.Last());
+        }
+        public void displayImagePlayer(Image image)
+        {
+            displayListPlayer.Add(new PictureBox());
+            displayListPlayer.Last().Image = image;
+            displayListPlayer.Last().AutoSize = true;
+            flowLayoutPanel_player.Controls.Add(displayListPlayer.Last());
         }
     }
 }
