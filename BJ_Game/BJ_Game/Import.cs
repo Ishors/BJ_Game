@@ -42,9 +42,10 @@ namespace BJ_Game
             chips = new Dictionary<int, Image>();
             filepathChips = Path.GetFullPath("chips");
             DirectoryInfo d = new DirectoryInfo(filepathChips);
+            
             foreach (var img in d.GetFiles("*.png"))
             {
-                chips.Add(Int32.Parse(img.Name.Substring(0, img.Name.Length - 4)), Image.FromFile(filepathChips + "/" + img));
+                chips.Add(Int32.Parse(img.Name.Substring(2, img.Name.Length - 6)), Image.FromFile(filepathChips + "/" + img));
             }
         }
 
