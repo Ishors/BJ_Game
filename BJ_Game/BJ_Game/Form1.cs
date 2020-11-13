@@ -32,7 +32,7 @@ namespace BJ_Game
         {
             InitializeComponent();
             startScreen = new StartScreen();
-            sr = new ShuffleRandomizer();
+            sr = new ShuffleRandomizer(4);
             bank = new Bank();
             imp = new Import();
             imp.importCards();
