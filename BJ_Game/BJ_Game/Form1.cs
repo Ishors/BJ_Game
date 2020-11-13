@@ -25,7 +25,6 @@ namespace BJ_Game
         private Dealer dealer;
         private Bank bank;
         private string hiddenCard;
-        private int hiddenCardInt;
         private int bet;
         private bool ingame;
 
@@ -54,49 +53,37 @@ namespace BJ_Game
 
         private void button_hit_Click(object sender, EventArgs e)
         {
-            string ace;
             string nextCard = sr.distribute();
             for (int i = 0; i < 52; i++)
             {
                 if (imp.CardsNames[i] == nextCard)
                 {
                     player.addPlayerHand(imp.CardsNames[i]);
-                    label_ptotal.Text = "Player total: " +player.PlayerHand.ToString();
-                    if (player.PlayerHand > 21 && (player.PlayerCards.Contains(ace = "a_hearts") ||
-                        player.PlayerCards.Contains(ace = "a_diamonds") || player.PlayerCards.Contains(ace = "a_spades") ||
-                        player.PlayerCards.Contains(ace = "a_clubs")) && player.AceCount > 0)
+                    displayImagePlayer(imp.CardsImages[i]);
+                    if (player.PlayerHand > 21 && player.AceCount > 0)
                     {
                         player.PlayerHand -= 10;
-                        displayImagePlayer(imp.CardsImages[i]);
-                        player.PlayerCards.Remove(ace);
                         player.AceCount -= 1;
-                    }
-                    else if (player.PlayerHand > 21 && !(player.PlayerCards.Contains("a_hearts") ||
-                        player.PlayerCards.Contains("a_diamonds") || player.PlayerCards.Contains("a_spades") ||
-                        player.PlayerCards.Contains("a_clubs")) && player.AceCount == 0)
-                    {
-                        displayImagePlayer(imp.CardsImages[i]);
-                        MessageBox.Show("Bust !");
-                        label_dtotal.Text = "Dealer total: " + dealer.DealerHand.ToString();
                         label_ptotal.Text = "Player total: " + player.PlayerHand.ToString();
-                        this.bet = 0;
+                    }
+                    else if (player.PlayerHand > 21 && player.AceCount == 0)
+                    {
+                        label_ptotal.Text = "Player total: " + player.PlayerHand.ToString();
+                        MessageBox.Show("Bust !");
                         clear();
                     }
-                    //A revoir car le dealer peut quand même taper blackjack
                     else
                     {
-                        displayImagePlayer(imp.CardsImages[i]);
-
+                        label_ptotal.Text = "Player total: " + player.PlayerHand.ToString();
                     }
                 }
-            }          
+            } 
         }
 
         private void button_stand_Click(object sender, EventArgs e)
         {
             dealer.DealerCards.TryGetValue(hiddenCard, out Image img);
             displayListDealer.Last().Image = img;
-
             while (dealer.DealerHand<=16)
             {
                 string nextCard = sr.distribute();
@@ -105,55 +92,42 @@ namespace BJ_Game
                     if (imp.CardsNames[i] == nextCard)
                     {
                         dealer.addDealerHand(imp.CardsNames[i], imp.CardsImages[i]);
-                        label_dtotal.Text = "Dealer total: " + dealer.DealerHand.ToString();
-                        if (dealer.DealerHand > 21)
+                        displayImageDealer(imp.CardsImages[i]);
+                        if (dealer.DealerHand > 21 && dealer.AceCount > 0)
                         {
-                            displayImageDealer(imp.CardsImages[i]);
-                            MessageBox.Show("Win !");
-                            label_dtotal.Text = "Dealer total: " + dealer.DealerHand.ToString();
-                            label_ptotal.Text = "Player total: " + player.PlayerHand.ToString();
-                            bank.addCash(bet);
-                            this.bet = 0;
-                            clear();
-                            // Pour éviter que ça ne tourne à l'infi on met u ntruc supérieur à 16
-                            // DealerHand sera de retour à 0 quand on lance une nouvelle partie de toutes façons
-                            dealer.DealerHand = 100;
+                            dealer.DealerHand -= 10;                           
+                            dealer.AceCount -= 1;                           
                         }
-                        else
-                        {
-                            displayImageDealer(imp.CardsImages[i]);
-                        }
-                    }
-                }
-            }    
-            if (dealer.DealerHand > player.PlayerHand)
+                    }                   
+                }             
+            }
+            label_dtotal.Text = "Dealer total: " + dealer.DealerHand.ToString();
+            if (dealer.DealerHand > 21)
+            {
+                MessageBox.Show("Win !");
+                bank.addCash(bet);
+                clear();
+            }
+            else if (dealer.DealerHand > player.PlayerHand)
             {
                 MessageBox.Show("Loose");
-                label_dtotal.Text = "Dealer total: " + dealer.DealerHand.ToString();
-                label_ptotal.Text = "Player total: " + player.PlayerHand.ToString();
-                this.bet = 0;
             }
             else if (dealer.DealerHand == player.PlayerHand)
             {
                 MessageBox.Show("Even");
-                label_dtotal.Text = "Dealer total: " + dealer.DealerHand.ToString();
-                label_ptotal.Text = "Player total: " + player.PlayerHand.ToString();
                 bank.addCashEven(bet);
-                this.bet = 0;
             }
             else
             {
                 MessageBox.Show("Win");
-                label_dtotal.Text = "Dealer total: " + dealer.DealerHand.ToString();
-                label_ptotal.Text = "Player total: " + player.PlayerHand.ToString();
                 bank.addCash(bet);
-                this.bet = 0;
             }
             clear();
         }
 
         public void clear()
         {
+            this.bet = 0;
             displayBets();
             player.PlayerHand = 0;
             dealer.DealerHand = 0;
@@ -163,6 +137,8 @@ namespace BJ_Game
             button_hit.Visible = false;
             button_stand.Visible = false;
             this.ingame = false;
+            label_dtotal.Text = "Dealer total: ";
+            label_ptotal.Text = "Player total: ";
         }
 
         public void displayImageDealer(Image image)
@@ -238,6 +214,7 @@ namespace BJ_Game
         private void button_go_Click_1(object sender, EventArgs e)
         {
             this.ingame = true;
+            int hiddenCardInt = 0;
             button_go.Visible = false;
             button_hit.Visible = true;
             button_stand.Visible = true;
@@ -255,26 +232,20 @@ namespace BJ_Game
                     if (imp.CardsNames[i] == nextCard && (j == 0 || j == 1))
                     {
                         player.addPlayerHand(imp.CardsNames[i]);
-                        //MessageBox.Show(imp.CardsNames[i]);
-                        //MessageBox.Show(player.PlayerHand.ToString());
                         displayImagePlayer(imp.CardsImages[i]);
                     }
                     else if (imp.CardsNames[i] == nextCard && (j == 2))
                     {
                         dealer.addDealerHand(imp.CardsNames[i], imp.CardsImages[i]);
-                        //MessageBox.Show(imp.CardsNames[i]);
-                        //MessageBox.Show(dealer.DealerHand.ToString());
                         displayImageDealer(imp.CardsImages[i]);
                     }
                     else if (imp.CardsNames[i] == nextCard && (j == 3))
                     {
                         int stock = dealer.DealerHand;
                         dealer.addDealerHand(imp.CardsNames[i], imp.CardsImages[i]);
+                        displayImageDealer(backOfCard);
                         hiddenCard = imp.CardsNames[i];
                         hiddenCardInt = dealer.DealerHand - stock;
-                        //MessageBox.Show(imp.CardsNames[i]);
-                        //MessageBox.Show(dealer.DealerHand.ToString());
-                        displayImageDealer(backOfCard);
                     }
                 }
             }
@@ -282,7 +253,6 @@ namespace BJ_Game
             {
                 MessageBox.Show("Blackjack !!");
                 bank.addCash(bet);
-                this.bet = 0;
                 clear();
             }
             int dealerTotal = dealer.DealerHand - hiddenCardInt;

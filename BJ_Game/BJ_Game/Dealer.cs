@@ -7,8 +7,9 @@ namespace BJ_Game
     class Dealer
     {
         private int dealerHand;
+        private int aceCount;
         Dictionary<string, Image> dealerCards;
-
+        
         public Dealer()
         {
             dealerCards = new Dictionary<string, Image>();
@@ -16,6 +17,7 @@ namespace BJ_Game
 
         public Dictionary<string, Image> DealerCards { get => dealerCards; set => dealerCards = value; }
         public int DealerHand { get => dealerHand; set => dealerHand = value; }
+        public int AceCount { get => aceCount; set => aceCount = value; }
 
         public void addDealerHand(string shuffledCard, Image shuffledCardImage)
         {
@@ -33,6 +35,7 @@ namespace BJ_Game
             else if ((shuffledCard.Substring(0, 1).Equals("a")) == true && dealerHand <= 10)
             {
                 dealerHand += 11;
+                aceCount += 1;
             }
             else if ((shuffledCard.Substring(0, 1).Equals("a")) == true && dealerHand >= 11)
             {
